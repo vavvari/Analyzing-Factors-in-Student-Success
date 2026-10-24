@@ -1,3 +1,63 @@
+# Student Performance Analysis: What Predicts Final Grades?
+ 
+Linear regression analysis of which student characteristics are most associated with final grades (G3) in **Math** and **Portuguese** courses at Portuguese secondary schools, with the aim of identifying students who may need early intervention.
+ 
+**Course:** MAT 421 final project (Arizona State University)
+ 
+## Dataset
+ 
+[UCI Student Performance dataset](https://archive.ics.uci.edu/dataset/320/student+performance) (Cortez & Silva, 2008): 395 Math records and 649 Portuguese records, 33 attributes each, covering family background, health, study habits, absences, and past failures. Grades use Portugal's 20-point scale; G3 is the final grade.
+ 
+Predictors examined:
+ 
+| Feature | Meaning |
+|---|---|
+| `studytime` | Weekly study time (1 to 4 scale) |
+| `famrel` | Family relationship quality (1 to 5) |
+| `health` | Current health status (1 to 5) |
+| `absences` | Number of school absences |
+| `failures` | Number of past class failures |
+ 
+## Approach
+ 
+1. Loaded and profiled both datasets (`head`, `info`, `describe`).
+2. Visualized each predictor against G3 with joint plots, then pair plots, correlation heatmaps, and `lmplot` fits for both subjects.
+3. Fit a separate multiple linear regression for each subject (50/50 train/test split, `random_state=10`).
+4. Evaluated with MAE, MSE, and RMSE, and checked residual distributions for approximate normality.
+5. Compared coefficients across subjects.
+## Results
+ 
+| Predictor | Math coef. | Portuguese coef. |
+|---|---|---|
+| failures | **-2.61** | **-2.10** |
+| health | -0.30 | -0.24 |
+| famrel | 0.14 | 0.05 |
+| studytime | -0.10 | **+0.50** |
+| absences | 0.03 | -0.06 |
+ 
+| Model | MAE | RMSE |
+|---|---|---|
+| Math | 3.39 | 4.43 |
+| Portuguese | 2.12 | 2.98 |
+ 
+- **Past failures are the strongest predictor in both subjects.** Each additional prior failure is associated with roughly a 2.1 to 2.6 point drop in the final grade (20-point scale).
+- **Subjects differ after that.** Study time is the second most influential factor for Portuguese, while for Math it is health.
+- Residuals were approximately normally distributed in both models.
+- The Portuguese model fits noticeably better (RMSE about 3.0 vs. 4.4 grade points).
+## Limitations
+ 
+- Predictors are coarse ordinal survey scores, and only five features were used.
+- Math study time shows a small negative coefficient, which likely reflects confounding (students who struggle may study more) rather than a causal effect.
+- The analysis is associative, not causal, and R² was not reported.
+- G1 and G2 (earlier-period grades) were intentionally excluded as predictors, since they would dominate the model and defeat the early-warning purpose.
+## Tech Stack
+ 
+Python, pandas, NumPy, scikit-learn, seaborn, matplotlib
+ 
+## Running It
+ 
+Open `finalproj.ipynb` in Jupyter or Google Colab. The notebook loads `student-mat.csv` and `student-por.csv` directly from the GitHub repo `vavvari/MAT421final`.
+ 
 ```text
 # Attributes for both student-mat.csv (Math course) and student-por.csv (Portuguese language course) datasets:
 1 school - student's school (binary: "GP" - Gabriel Pereira or "MS" - Mousinho da Silveira)
