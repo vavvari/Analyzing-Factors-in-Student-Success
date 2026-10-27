@@ -54,7 +54,7 @@ Python, pandas, NumPy, scikit-learn, seaborn, matplotlib
  
 ## Running It
  
-Open `finalproj.ipynb` in Jupyter or Google Colab. The notebook loads `student-mat.csv` and `student-por.csv` directly from the GitHub repo `vavvari/MAT421final`.
+Open `studentsuccess.ipynb` in Jupyter or Google Colab. The notebook loads `student-mat.csv` and `student-por.csv` directly from the GitHub repo `vavvari/Analyzing-Factors-in-Student-Success`.
  
 ```text
 # Attributes for both student-mat.csv (Math course) and student-por.csv (Portuguese language course) datasets:
