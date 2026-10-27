@@ -2,8 +2,6 @@
  
 Linear regression analysis of which student characteristics are most associated with final grades (G3) in **Math** and **Portuguese** courses at Portuguese secondary schools, with the aim of identifying students who may need early intervention.
  
-**Course:** MAT 421 final project (Arizona State University)
- 
 ## Dataset
  
 [UCI Student Performance dataset](https://archive.ics.uci.edu/dataset/320/student+performance) (Cortez & Silva, 2008): 395 Math records and 649 Portuguese records, 33 attributes each, covering family background, health, study habits, absences, and past failures. Grades use Portugal's 20-point scale; G3 is the final grade.
